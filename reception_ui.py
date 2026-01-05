@@ -22,13 +22,13 @@ class ReceptionUI(tk.Frame):
         self.log = tk.Text(self, height=10)
         self.log.pack()
 
-        def register(self):
-            p = self.qm.register_patient(
-                self.name.get(), self.nid.get(), self.service.get()
-            )
-            self.log.inserted(tk.END, f"Registered {p.token} - {p.name}\n")
+    def register(self):
+        p = self.qm.register_patient(
+            self.name.get(), self.nid.get(), self.service.get()
+        )
+        self.log.insert(tk.END, f"Registered {p.token} - {p.name}\n")
 
-        def call_next(self):
-            p = self.qm.call_next()
-            if p:
-                self.log.inserted(tk.END, f"Called {p.token} - {p.name}\n")
+    def call_next(self):
+        p = self.qm.call_next()
+        if p:
+            self.log.insert(tk.END, f"Called {p.token} - {p.name}\n")
