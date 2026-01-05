@@ -1,6 +1,9 @@
 import tkinter as tk
+from tkinter import ttk
 from login_ui import LoginUI
 from reception_ui import ReceptionUI
+from display_ui import DisplayUI
+from admin_ui import AdminUI
 
 
 def launch_app(role):
@@ -9,7 +12,7 @@ def launch_app(role):
     app.title("AQMS - Python ver")
     app.geometry("800x600")
 
-    tabs = tk.ttk.NoteBook(app)
+    tabs = ttk.Notebook(app)
 
     reception = ReceptionUI(tabs)
     display = DisplayUI(tabs)
