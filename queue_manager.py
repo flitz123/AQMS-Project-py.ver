@@ -33,6 +33,7 @@ class QueueManager:
                 p.served_time = datetime.now()
                 self.storage.save_patients(self.patients)
                 return p
+        return None
 
     def get_queue(self):
         return self.patients
