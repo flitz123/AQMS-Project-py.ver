@@ -17,3 +17,8 @@ This is Python-based implementation of the Automated Queue Management System (AQ
 ---Reasoning---
 
 -> This is because the tkinter module was refused to function despite being installed and none of the fixes used including sudo operations could get my GUI up and running.
+
+#DEMO
+
+-> Run "python main.py" in your terminal and try out the project. 
+-> Check out the "Example.md" file for a demo of how the project looks when running and view the "patients.csv" file in the "data/..." directry to see how data is stored.  
