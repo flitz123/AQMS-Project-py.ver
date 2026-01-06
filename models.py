@@ -21,13 +21,13 @@ class Patient:
             self.arrival_time.isoformat(),
             self.status,
             self.called_time.isoformat() if self.called_time else "",
-            self.served_time.isoformat() if self.served_time else "",
+            self.served_time.isoformat() if self.served_time else ""
         ]
 
     @staticmethod
     def from_csv(row):
         p = Patient(row[0], row[1], row[2], row[3])
-        p.arrival_time = datetime.fromisoformat(row[7])
+        p.arrival_time = datetime.fromisoformat(row[4])
         p.status = row[5]
         if row[6]:
             p.called_time = datetime.fromisoformat(row[6])
