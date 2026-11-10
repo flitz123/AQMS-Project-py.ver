@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f7fb">
+  <title>Automated Queue Management System</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">AQ</div>
+        <div><strong>AQMS</strong><span>Queue Control</span></div>
+      </div>
+      <nav>
+        <button class="nav-item active" data-view="overview"><span class="nav-icon">⌂</span>Overview</button>
+        <button class="nav-item" data-view="queue"><span class="nav-icon">▦</span>Queue</button>
+        <button class="nav-item" data-view="reports"><span class="nav-icon">⌁</span>Reports</button>
+      </nav>
+      <div class="sidebar-foot">
+        <div class="operator-avatar">AR</div>
+        <div><strong>Reception Desk</strong><span>Active operator</span></div>
+      </div>
+    </aside>
+
+    <main>
+      <header>
+        <div>
+          <p class="eyebrow" id="today">Today</p>
+          <h1>Automated Queue Management System</h1>
+        </div>
+        <div class="header-actions">
+          <div class="live"><span></span> Live system</div>
+          <button class="primary" id="openRegister">+ Register patient</button>
+        </div>
+      </header>
+
+      <section id="overviewView">
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-icon blue">▦</div><div><span>Waiting</span><strong id="waitingCount">0</strong><small>In line now</small></div></article>
+          <article class="stat-card"><div class="stat-icon amber">◷</div><div><span>Called</span><strong id="calledCount">0</strong><small>Currently serving</small></div></article>
+          <article class="stat-card"><div class="stat-icon green">✓</div><div><span>Served</span><strong id="servedCount">0</strong><small>Completed visits</small></div></article>
+          <article class="stat-card"><div class="stat-icon red">×</div><div><span>Cancelled</span><strong id="cancelledCount">0</strong><small>No-shows & cancelled</small></div></article>
+        </div>
+
+        <div class="content-grid">
+          <article class="panel call-panel">
+            <div class="panel-heading"><div><p>NOW SERVING</p><h2 id="nowServing">No patient called</h2></div><span class="status-pill" id="nowStatus">Available</span></div>
+            <div class="call-details">
+              <div><span>Ticket</span><strong id="nowToken">—</strong></div>
+              <div><span>Service</span><strong id="nowService">—</strong></div>
+              <button class="serve-button" id="serveCurrent" disabled>Mark as served</button>
+            </div>
+            <button class="call-button" id="callNext"><span>Call next patient</span><b>→</b></button>
+          </article>
+
+          <article class="panel queue-panel">
+            <div class="panel-heading">
+              <div><p>QUEUE</p><h2>Waiting list</h2></div>
+              <button class="text-button" data-view-link="queue">View all</button>
+            </div>
+            <div class="queue-list" id="queuePreview"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="queueView" class="hidden">
+        <article class="panel">
+          <div class="panel-heading">
+            <div><p>MANAGEMENT</p><h2>Patient queue</h2></div>
+            <input class="search" id="queueSearch" type="search" placeholder="Search name, ticket or service">
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Ticket</th><th>Patient</th><th>Service</th><th>Arrival</th><th>Status</th><th></th></tr></thead>
+              <tbody id="queueTable"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section id="reportsView" class="hidden">
+        <div class="report-grid">
+          <article class="panel"><p class="eyebrow">DAILY PERFORMANCE</p><h2 id="dailyTotal">0 patients today</h2><div class="progress"><span id="dailyProgress"></span></div></article>
+          <article class="panel"><p class="eyebrow">SYSTEM SUMMARY</p><div class="report-lines" id="reportSummary"></div></article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="registerModal">
+    <div class="modal">
+      <div class="modal-heading"><div><p>NEW TICKET</p><h2>Register patient</h2></div><button class="close" id="closeRegister">×</button></div>
+      <form id="registerForm">
+        <label>Full name<input name="name" required placeholder="e.g. John Doe"></label>
+        <label>National ID<input name="national_id" required placeholder="Enter identification number"></label>
+        <label>Service type<select name="service_type" required><option value="">Select a service</option><option>General Consultation</option><option>Laboratory</option><option>Radiology</option><option>Emergency</option><option>Pharmacy</option><option>Billing</option></select></label>
+        <div id="formError" class="form-error"></div>
+        <button class="primary full" type="submit">Create queue ticket</button>
+      </form>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

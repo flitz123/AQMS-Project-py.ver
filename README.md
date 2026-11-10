@@ -1,24 +1,27 @@
-This is Python-based implementation of the Automated Queue Management System (AQMS); it faithfully reproduces the functionality of the Java version while leveraging Python’s simplicity and Tkinter’s ease of GUI development.
+# Automated Queue Management System
 
----Features Implemented in Python Version---
+A complete Flask web application for registering patients, generating queue tickets, calling the next patient, tracking service status, and reviewing daily activity.
 
-1. Patient registration
-2. Automatic token generation
-3. Queue calling logic
-4. CSV persistence
-5. Login authentication
-6. Modular OOP structure
-7. Desktop GUI (Tkinter)
+## Run locally
 
-#UPDATE
+```powershell
+py -m pip install -r requirements.txt
+py app.py
+```
 
--> Had to refactor the project to use the terminal to run and operate the project, through user_input function for data entry and registering.
+Open `http://127.0.0.1:5000`.
 
----Reasoning---
+## Vercel deployment
 
--> This is because the tkinter module was refused to function despite being installed and none of the fixes used including sudo operations could get my GUI up and running.
+1. Push this repository to GitHub.
+2. Import the repository in Vercel.
+3. Vercel will detect the Python entry point through `vercel.json`.
+4. Deploy without additional environment variables.
 
-#DEMO
+Data is persisted in `data/patients.csv`.
 
--> Run "python main.py" in your terminal and try out the project. 
--> Check out the "Example.md" file for a demo of how the project looks when running and view the "patients.csv" file in the "data/..." directry to see how data is stored.  
+## CLI mode
+
+```powershell
+py main.py
+```

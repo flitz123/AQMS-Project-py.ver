@@ -24,6 +24,18 @@ class Patient:
             self.served_time.isoformat() if self.served_time else ""
         ]
 
+    def to_dict(self):
+        return {
+            "token": self.token,
+            "name": self.name,
+            "national_id": self.national_id,
+            "service_type": self.service_type,
+            "arrival_time": self.arrival_time.isoformat(),
+            "status": self.status,
+            "called_time": self.called_time.isoformat() if self.called_time else None,
+            "served_time": self.served_time.isoformat() if self.served_time else None,
+        }
+
     @staticmethod
     def from_csv(row):
         p = Patient(row[0], row[1], row[2], row[3])

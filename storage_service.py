@@ -1,12 +1,14 @@
 import csv
 import os
+from pathlib import Path
 from models import Patient
 
 
 class StorageService:
     def __init__(self, filename="data/patients.csv"):
+        filename = os.getenv("AQMS_DATA_FILE", filename)
         self.filename = filename
-        os.makedirs("data", exist_ok=True)
+        Path(filename).parent.mkdir(parents=True, exist_ok=True)
 
     def load_patients(self):
         patients = []
@@ -15,7 +17,8 @@ class StorageService:
         with open(self.filename, newline="", encoding="utf-8") as f:
             reader = csv.reader(f)
             for row in reader:
-                patients.append(Patient.from_csv(row))
+                if len(row) >= 5:
+                    patients.append(Patient.from_csv(row[:8] + [""] * max(0, 8 - len(row))))
         return patients
 
     def save_patients(self, patients):
